@@ -1,1 +1,1 @@
-# karaoke-reseni
+# Karaoke - řešení
