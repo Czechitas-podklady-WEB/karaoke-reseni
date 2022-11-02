@@ -6,7 +6,7 @@ import Player from './components/Player';
 import './style.css';
 
 const getCurrentLineIndex = (lines, time) => {
-  return lines.findLastIndex((line) => line.time < (time + 1));
+  return lines.findLastIndex((line) => line.time < time);
 }
 
 const App = () => {

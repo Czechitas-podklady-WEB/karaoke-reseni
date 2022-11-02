@@ -8,6 +8,17 @@
   border: none;
   outline: none;
   background-color: #A91B0D;
+  background-repeat: no-repeat;
+  background-size: 1.5rem 1.5rem;
+  background-position: center;
   border-radius: 50%;
   margin-bottom: 2rem;
+}
+
+.play {
+  background-image: url(./img/play-icon.svg);
+}
+
+.pause {
+  background-image: url(./img/pause-icon.svg);
 }

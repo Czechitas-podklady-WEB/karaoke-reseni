@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './style.css';
 
 const Player = ({ src, onTimeUpdate }) => {
+  const [playing, setPlaying] = useState(false);
   const audioPlayer = useRef();
 
   useEffect(() => {
@@ -9,19 +10,26 @@ const Player = ({ src, onTimeUpdate }) => {
     return () => audioPlayer.current.removeEventListener('timeupdate', onTimeUpdate);
   }, [onTimeUpdate]);
 
-  const handleTogglePlay = () => {
-    if (audioPlayer.current.paused) {
+  useEffect(() => {
+    if (playing) {
       audioPlayer.current.play();
     } else {
       audioPlayer.current.pause();
-    } 
+    }
+  }, [playing])
+
+  const handleTogglePlay = () => {
+    setPlaying(!playing);
   }
 
   return (
     <>
       <audio ref={audioPlayer} src={src} />
       <div className="player-controls">
-        <button className="play-button" onClick={handleTogglePlay}>Play</button>
+        <button 
+          className={`play-button ${playing ? 'pause' : 'play'}`}
+          onClick={handleTogglePlay}
+        />
       </div>
     </>
   );
