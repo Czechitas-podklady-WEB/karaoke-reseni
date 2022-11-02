@@ -12,10 +12,9 @@ const getCurrentLineIndex = (lines, time) => {
 const App = () => {
   const [currentLineIndex, setCurrentLineIndex] = useState(-1);
 
-  const handleTimeUpdate = (e) => {
-    const index = getCurrentLineIndex(lines, e.target.currentTime);
+  const handleTimeUpdate = (currentTime) => {
+    const index = getCurrentLineIndex(lines, currentTime);
     if (index !== currentLineIndex) {
-      console.log(e.target.currentTime, index);
       setCurrentLineIndex(index);
     }
   };

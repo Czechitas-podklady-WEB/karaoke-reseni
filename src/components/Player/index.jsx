@@ -5,10 +5,9 @@ const Player = ({ src, onTimeUpdate }) => {
   const [playing, setPlaying] = useState(false);
   const audioPlayer = useRef();
 
-  useEffect(() => {
-    audioPlayer.current.addEventListener('timeupdate', onTimeUpdate);
-    return () => audioPlayer.current.removeEventListener('timeupdate', onTimeUpdate);
-  }, [onTimeUpdate]);
+  const handleTimeUpdate = (e) => {
+    onTimeUpdate(e.target.currentTime);
+  }
 
   useEffect(() => {
     if (playing) {
@@ -24,7 +23,7 @@ const Player = ({ src, onTimeUpdate }) => {
 
   return (
     <>
-      <audio ref={audioPlayer} src={src} />
+      <audio ref={audioPlayer} src={src} onTimeUpdate={handleTimeUpdate} />
       <div className="player-controls">
         <button 
           className={`play-button ${playing ? 'pause' : 'play'}`}
