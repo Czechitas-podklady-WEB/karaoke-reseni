@@ -1,9 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import './style.css';
 
-const Player = () => {
+const Player = ({ src, onTimeUpdate }) => {
   const audioPlayer = useRef();
-  
+
+  useEffect(() => {
+    audioPlayer.current.addEventListener('timeupdate', onTimeUpdate);
+    return () => audioPlayer.current.removeEventListener('timeupdate', onTimeUpdate);
+  }, [onTimeUpdate]);
+
   const handleTogglePlay = () => {
     if (audioPlayer.current.paused) {
       audioPlayer.current.play();
@@ -14,8 +19,10 @@ const Player = () => {
 
   return (
     <>
-      <audio ref={audioPlayer} src='fools-garden-lemon-tree.mp3' />
-      <button onClick={handleTogglePlay}>Play</button>
+      <audio ref={audioPlayer} src={src} />
+      <div className="player-controls">
+        <button className="play-button" onClick={handleTogglePlay}>Play</button>
+      </div>
     </>
   );
 };

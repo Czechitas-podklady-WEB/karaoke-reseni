@@ -1,0 +1,13 @@
+.player-controls {
+  text-align: center;
+}
+
+.play-button {
+  width: 4rem;
+  height: 4rem;
+  border: none;
+  outline: none;
+  background-color: #A91B0D;
+  border-radius: 50%;
+  margin-bottom: 2rem;
+}
